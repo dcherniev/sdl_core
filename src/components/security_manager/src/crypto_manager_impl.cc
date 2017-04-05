@@ -93,6 +93,7 @@ CryptoManagerImpl::CryptoManagerImpl(
     OpenSSL_add_all_algorithms();
     SSL_library_init();
   }
+  InitCertExpTime();
 }
 
 CryptoManagerImpl::~CryptoManagerImpl() {
@@ -412,5 +413,11 @@ void CryptoManagerImpl::asn1_time_to_tm(ASN1_TIME* time) {
     expiration_time_.tm_sec = sec;
   }
 }
+
+void CryptoManagerImpl::InitCertExpTime() {
+  strptime("1 Jan 1970 00:00:00", "%d %b %Y %H:%M:%S", &expiration_time_);
+}
+
+void CryptoManagerImpl::OnPTUFinished(const bool ptu_result) {}
 
 }  // namespace security_manager
