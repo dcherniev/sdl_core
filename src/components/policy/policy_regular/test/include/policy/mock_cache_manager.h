@@ -193,9 +193,6 @@ class MockCacheManagerInterface : public CacheManagerInterface {
                           std::vector<std::string>& request_types));
   MOCK_METHOD1(GetHMIAppTypeAfterUpdate,
                void(std::map<std::string, StringArray>& app_hmi_types));
-  MOCK_CONST_METHOD2(AppHasHMIType,
-                     bool(const std::string& application_id,
-                          policy_table::AppHMIType hmi_type));
   MOCK_METHOD0(ResetCalculatedPermissions, void());
   MOCK_METHOD3(AddCalculatedPermissions,
                void(const std::string& device_id,
