@@ -2113,6 +2113,9 @@ TEST_F(PolicyHandlerTest,
   sync_primitives::AutoLock auto_lock_second(wait_hmi_lock_second);
   WaitAsync waiter_second(kCallsCount_, kTimeout_);
 
+  ON_CALL(*mock_policy_manager_, IsNeedToUpdateExternalConsentStatus(_))
+      .WillByDefault(Return(true));
+
   EXPECT_CALL(*mock_policy_manager_,
               SetExternalConsentStatus(external_consent_status))
       .WillOnce(Return(true));
